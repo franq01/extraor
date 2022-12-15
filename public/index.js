@@ -3,10 +3,10 @@ import { saveTask, onGetTasks, deleteTask, getTask, updateTask,
 import { card } from './ui.js';
 
 const formTask = document.querySelector('#task-form');
-const taskContainer = document.querySelector('#tasks-container','#btnOcultar');
+const taskContainer = document.querySelector('#tasks-container');
 let editStatus = false;
 let idForEdit = '';
-//inicio del modal 
+
 
 
 const actionButtons =  async ({target}) => {    
