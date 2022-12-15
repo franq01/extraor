@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>Firebase CRUD</title>
+    
+<body>
+    <section class="section">
+        <h1 class="title"> extra con CRUD con Firestore y JavaScript</h1>
+    </section>
+    <div class="container">
+        <div class="columns">
+            <!--boton de modal-->
+           
+
+
+            <button class="js-modal-trigger" data-target="modal-js-example">
+                nuevo
+              </button>
+              <style>
+                .js-modal-trigger{background-color: #69f16e;} /* Green */
+                .js-modal-trigger{font-size: 30px;}
+                .js-modal-trigger{width: 200px;}
+                .js-modal-trigger{border-radius: 4px;}
+                .js-modal-trigger:hover {box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+                }
+                      
+              </style>
+
+
+              <div id="modal-js-example" class="modal">
+                <div class="modal-background"></div>
+              
+                <div class="modal-content">
+                  <div class="box">
+                    <div id="formulario"class="column is-half">
+                
+                
+                    
+                    
+
+                        <form action="" id="task-form" class="box">
+                            <label for="task-title">Title:</label>
+                            <input type="text" name="task-title" id="task-title" class="input" placeholder="Title">
+                            <label for="task-description">Descripción:</label>
+                            <textarea 
+                                class="textarea my-1"
+                                name="task-description" 
+                                id="task-description" 
+                                placeholder="Task Descripción" rows="5"></textarea>
+                                <input type="file" name="file-task" id="file-task">
+                                <progress class="progress is-link" clas="progress is-small is-primary" value="" max="100">15%</progress>
+                                <img id="image" src="" alt="" width="200px" class="image">
+                            <button id="btn-task-save" class="button is-success">Save</button>
+                        </form>
+                        
+                        
+                    </div>  
+                    <!-- Your content -->
+                  </div>
+                </div>
+              
+                
+              </div>
+
+            
+           
+            <!--boton para modal -->
+            
+            <div class="column">
+                <div id="tasks-container"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+<!--script de modal-->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+  // Functions to open and close a modal
+  function openModal($el) {
+    $el.classList.add('is-active');
+  }
+
+  function closeModal($el) {
+    $el.classList.remove('is-active');
+  }
+
+  function closeAllModals() {
+    (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+      closeModal($modal);
+    });
+  }
+
+  // Add a click event on buttons to open a specific modal
+  (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+    const modal = $trigger.dataset.target;
+    const $target = document.getElementById(modal);
+
+    $trigger.addEventListener('click', () => {
+      openModal($target);
+    });
+  });
+
+  // Add a click event on various child elements to close the parent modal
+  (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+    const $target = $close.closest('.modal');
+
+    $close.addEventListener('click', () => {
+      closeModal($target);
+    });
+  });
+
+  // Add a keyboard event to close all modals
+  document.addEventListener('keydown', (event) => {
+    const e = event || window.event;
+
+    if (e.keyCode === 27) { // Escape key
+      closeAllModals();
+    }
+  });
+});
+</script>
+
+    <script src="./index.js" type="module"></script>
+
+</body>
+</html> 
